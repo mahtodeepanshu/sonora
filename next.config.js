@@ -4,6 +4,9 @@ const nextConfig = {
         domains: [
             "uwiibhlxwjvxhjdryhhm.supabase.co"
         ]
+    },
+    future: {
+        webpack5: true
     }
 }
 
