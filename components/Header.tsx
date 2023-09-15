@@ -13,6 +13,7 @@ import Button from "./Button"
 import useAuthModal from "@/hooks/useAuthModal"
 import { useUser } from "@/hooks/useUser"
 import usePlayer from "@/hooks/usePlayer"
+import Link from "next/link"
 
 interface HeaderProps {
     children: React.ReactNode
@@ -107,7 +108,9 @@ const Header: React.FC<HeaderProps> = ({
                         transition
                     "
                 >
-                    <HiHome className="text-black" size={20} />
+                    <Link href='/'>
+                        <HiHome className="text-black" size={20} />
+                    </Link>
                 </button>
                 <button 
                     className="
@@ -122,7 +125,9 @@ const Header: React.FC<HeaderProps> = ({
                         transition
                     "
                 >
-                    <BiSearch className="text-black" size={20} />
+                    <Link href='/search'>
+                        <BiSearch className="text-black" size={20} />
+                    </Link>
                 </button>
             </div>
             <div
