@@ -16,6 +16,7 @@ const font = Figtree({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Sonora',
   description: 'Listen to music!',
+  
 }
 
 export const revalidate = 0
@@ -30,6 +31,9 @@ export default async function RootLayout({
   const products = await getActiveProductsWithPrices()
   return (
     <html lang="en">
+      <head>
+        <link rel='icon' href='/favicon.ico/'/>
+      </head>
       <body className={font.className}>
         <ToasterProvider />
         <SupabaseProvider>
