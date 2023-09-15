@@ -80,7 +80,7 @@ export async function POST(
       }
       
     } catch (error) {
-      console.log(error) 
+      console.log(`webhook`,error) 
       return NextResponse.json('Webhook error: "Webhook handler failed. View logs."', { status: 400 })
     }
   }

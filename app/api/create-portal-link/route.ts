@@ -19,8 +19,8 @@ export async function POST() {
         if (!user) throw Error('Could not get user')
 
         const customer = await createOrRetrieveCustomer({
-            uuid: user.id || '',
-            email: user.email || ''
+            uuid: user?.id || '',
+            email: user?.email || ''
         })
 
         if (!customer) throw Error('Could not get customer')
@@ -32,7 +32,7 @@ export async function POST() {
 
         return NextResponse.json({ url })
     } catch (err: any) {
-        console.log(err)
+        console.log(`portal`,err)
         
         return NextResponse.json('Internal Error', { status: 500 })
     }
