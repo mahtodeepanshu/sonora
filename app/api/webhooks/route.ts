@@ -33,13 +33,13 @@ export async function POST(
     let event: Stripe.Event
 
     try {
-        if (!sig || !webhookSecret) return
+        if (!sig || !webhookSecret) throw new Error('not signed or no webhook secret')
         event = stripe.webhooks.constructEvent(body, sig, webhookSecret)
 
     } catch (err: any) {
         console.log(`Error message: ${err.message}`)
 
-        return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 })
+        return NextResponse.json(`Webhook Error: ${err.message}`, { status: 400 })
     }
 
   if (relevantEvents.has(event.type)) {
@@ -78,11 +78,12 @@ export async function POST(
         default:
             throw new Error('Unhandled relevant event!')
       }
+      
     } catch (error) {
-        console.log("this",error) 
-        return new NextResponse('Webhook error: "Webhook handler failed. View logs."', { status: 400 })
+      console.log(error) 
+      return NextResponse.json('Webhook error: "Webhook handler failed. View logs."', { status: 400 })
     }
   }
-
   return NextResponse.json({ received: true }, { status: 200 })
+
 }
